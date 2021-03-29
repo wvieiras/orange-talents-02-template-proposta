@@ -17,6 +17,10 @@ public class Proposta {
     private String endereco;
     private BigDecimal salario;
 
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private PropostaStatus status = PropostaStatus.NÃO_ELEGIVEL;
+
     public Long getId() {
         return id;
     }
@@ -41,6 +45,8 @@ public class Proposta {
         return salario;
     }
 
+    public PropostaStatus getStatus() { return status; }
+
     public Proposta(String documento, String email, String nome, String endereco, BigDecimal salario) {
         this.documento = documento;
         this.email = email;
@@ -58,6 +64,12 @@ public class Proposta {
                 ", nome='" + nome + '\'' +
                 ", endereco='" + endereco + '\'' +
                 ", salario=" + salario +
+                ", status=" + status +
                 '}';
+    }
+
+
+    public void updateStatus(PropostaStatus status) {
+        this.status = status;
     }
 }
